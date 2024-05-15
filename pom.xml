@@ -31,7 +31,7 @@
 		<spring-boot.version>2.7.18</spring-boot.version>
 
 		<mybatis-spring-boot-starter.version>2.3.2</mybatis-spring-boot-starter.version>
-		<mysql-connector-j.version>8.3.0</mysql-connector-j.version>
+		<postgresql.version>42.7.3</postgresql.version>
 
 		<slf4j-api.version>2.0.13</slf4j-api.version>
 		<junit-jupiter.version>5.10.2</junit-jupiter.version>
