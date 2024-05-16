@@ -42,6 +42,7 @@ jobs:
         id: version
         run: echo ::set-output name=version::$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout | cut -d '-' -f 1)
 
+      # TODO attest-build-provenance update to 1.1.1 delete it
       # Get the repository name in lowercase.
       - name: Get Repository Name in Lowercase
         id: name
