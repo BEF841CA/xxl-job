@@ -77,6 +77,12 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 
+		<!-- Jasypt Spring Boot -->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>${jasypt-spring-boot.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -110,6 +116,12 @@
 						</resource>
 					</resources>
 				</configuration>
+			</plugin>
+			<!-- jasypt-maven-plugin -->
+			<plugin>
+				<groupId>com.github.ulisesbocchio</groupId>
+				<artifactId>jasypt-maven-plugin</artifactId>
+				<version>3.0.5</version>
 			</plugin>
 		</plugins>
 	</build>
