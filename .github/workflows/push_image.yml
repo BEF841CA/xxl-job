@@ -62,7 +62,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ steps.name.outputs.image_name }}
           tags: |
-            ${{ steps.maven_version.outputs.version }}
+            ${{ steps.version.outputs.version }}
             latest
 
       # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
