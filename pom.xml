@@ -39,7 +39,7 @@
 
 		<groovy.version>4.0.21</groovy.version>
 
-		<jasypt-spring-boot.version>3.0.5</jasypt-spring-boot.version>
+		<jasypt-spring-boot.version>2.1.2</jasypt-spring-boot.version>
 
 		<maven-source-plugin.version>3.3.1</maven-source-plugin.version>
 		<maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
