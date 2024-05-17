@@ -1,5 +1,5 @@
 #
-name: Push image
+name: release version
 
 # Configures this workflow to run every time a new tag is pushed.
 on:
