@@ -1,14 +1,15 @@
 #
 name: Push image
 
-# Configures this workflow to run every time a change is pushed to the branch called `release`.
+# Configures this workflow to run every time a new tag is pushed.
 on:
   push:
-    branches: [ 'release' ]
+    tags: [ '*' ]
 
 # Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
 env:
   REGISTRY: ghcr.io
+  VERSION: ${{ github.event.ref }}
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
@@ -37,11 +38,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      # Read the Maven version.
-      - name: Read Maven Version
-        id: version
-        run: echo ::set-output name=version::$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout | cut -d '-' -f 1)
-
       # TODO attest-build-provenance update to 1.1.1 delete it
       # Get the repository name in lowercase.
       - name: Get Repository Name in Lowercase
@@ -62,7 +58,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ steps.name.outputs.image_name }}
           tags: |
-            ${{ steps.version.outputs.version }}
+            ${{ env.VERSION }}
             latest
 
       # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
