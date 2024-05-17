@@ -41,13 +41,13 @@ jobs:
       # Read the Tag version.
       - name: Read Tag Version
         id: version
-        run: echo ::set-output name=version::$(echo "${{ github.event.ref }}" | cut -d'/' -f3 | cut -c2-)
+        run: echo version=$(echo "${{ github.event.ref }}" | cut -d'/' -f3 | cut -c2-) >> $GITHUB_OUTPUT
 
       # TODO attest-build-provenance update to 1.1.1 delete it
       # Get the repository name in lowercase.
       - name: Get Repository Name in Lowercase
         id: name
-        run: echo ::set-output name=image_name::$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+        run: echo image_name=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]') >> $GITHUB_OUTPUT
 
       # Uses the `docker/login-action` action to log in to the Container registry registry using the account and password that will publish the packages. Once published, the packages are scoped to the account defined here.
       - name: Log in to the Container registry
@@ -85,7 +85,6 @@ jobs:
         with:
           subject-name: ${{ env.REGISTRY }}/${{ steps.name.outputs.image_name }}
           subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
 
       # This step uses the `softprops/action-gh-release` action to create a GitHub release. It uses the `name` and `tag_name` parameters to define the release name and tag, respectively.
       - name: Release
