@@ -38,10 +38,10 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      # Read the Maven version.
-      - name: Read Maven Version
+      # Read the Tag version.
+      - name: Read Tag Version
         id: version
-        run: echo ::set-output name=version::$(echo "${{github.event.ref}}" | cut -d'-' -f3 | cut -c2-)
+        run: echo ::set-output name=version::$(echo "${{ github.event.ref }}" | cut -d'/' -f3 | cut -c2-)
 
       # TODO attest-build-provenance update to 1.1.1 delete it
       # Get the repository name in lowercase.
